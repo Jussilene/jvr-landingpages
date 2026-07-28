@@ -32,9 +32,9 @@ O repositório também inclui o workflow `.github/workflows/deploy.yml`, que pub
 
 Para adicionar um template, inclua um item em `src/data/templates.ts`. A rota `/templates/:slug`, o filtro e o botão do WhatsApp são gerados automaticamente.
 
-## WhatsApp — confirmar antes de publicar
+## WhatsApp
 
-O briefing informou a exibição `+55 41 9507-1438`, que pode estar sem um dígito. Nenhum dígito foi inventado. Confirme o contato e então altere **os dois campos** `WHATSAPP_DISPLAY` e `WHATSAPP_E164` em `src/config/site.ts`. Todos os botões usam essa configuração central.
+O contato configurado é `(41) 99507-1438`, com link internacional `5541995071438`. Para alterar futuramente, atualize **os dois campos** `WHATSAPP_DISPLAY` e `WHATSAPP_E164` em `src/config/site.ts`. Todos os botões usam essa configuração central.
 
 ## Domínio e publicação
 
@@ -53,7 +53,6 @@ O script captura as 15 demonstrações em `public/previews/`. Os cards atuais s�
 
 ## Antes da publicação definitiva
 
-- Confirmar o número completo do WhatsApp.
 - Preencher o Instagram somente se houver um perfil oficial.
 - Definir a URL pública no sitemap e metadados Open Graph.
 - Revisar Política de Privacidade e Termos de Serviço com orientação jurídica adequada.

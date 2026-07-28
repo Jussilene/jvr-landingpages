@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronDown, Headphones, Play, ShieldChec
 import { templates } from '../data/templates'
 import { templateDetails } from '../data/templateDetails'
 import { whatsappUrl } from '../config/site'
+import WhatsAppIcon from '../components/WhatsAppIcon'
 
 export default function TemplatePage() {
   const { slug } = useParams()
@@ -30,7 +31,7 @@ export default function TemplatePage() {
           <span className="demo-eyebrow">{item.eyebrow}</span>
           <h1>{item.headline}</h1>
           <p>{item.subheadline}</p>
-          <a className="demo-button" href={contact} target="_blank" rel="noreferrer">Solicitar informações <ArrowRight size={18}/></a>
+          <a className="demo-button" href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Solicitar informações <ArrowRight size={18}/></a>
         </div>
         <div className="demo-visual" aria-label={`Composição visual do template ${item.name}`}>
           <div className="orb"/><span>{item.name.charAt(0)}</span><small>{item.niche}</small>
@@ -86,11 +87,11 @@ export default function TemplatePage() {
         <span>Pronto para adaptar este modelo à sua marca?</span>
         <h2>Vamos criar uma presença completa que tenha a sua cara.</h2>
         <p>Fale com a JVR e solicite um orçamento para personalizar textos, cores e conteúdo.</p>
-        <a className="demo-button" href={contact} target="_blank" rel="noreferrer">Quero este modelo <ArrowRight size={18}/></a>
+        <a className="demo-button" href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Quero este modelo <ArrowRight size={18}/></a>
       </section>
     </main>
 
     <footer className="demo-footer"><strong>{item.name}</strong><span>Template demonstrativo · Conteúdo e contatos fictícios.</span><Link to="/"><ArrowLeft size={16}/> Voltar à JVR</Link></footer>
-    <a className="fixed-demo-cta" href={contact} target="_blank" rel="noreferrer">Quero este modelo <ArrowRight size={17}/></a>
+    <a className="fixed-demo-cta" href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Quero este modelo <ArrowRight size={17}/></a>
   </div>
 }

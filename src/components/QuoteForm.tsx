@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from 'react'
-import { Send } from 'lucide-react'
 import { buildPlans } from '../data/pricing'
 import { templates } from '../data/templates'
 import { whatsappUrl } from '../config/site'
+import WhatsAppIcon from './WhatsAppIcon'
 
 export default function QuoteForm() {
   const [error, setError] = useState('')
@@ -22,6 +22,6 @@ export default function QuoteForm() {
     <label>Mensagem<textarea name="mensagem" rows={4} placeholder="Conte um pouco sobre o que precisa." /></label>
     {error && <p className="form-error" role="alert">{error}</p>}
     <p className="form-note">Seus dados não são armazenados. Ao continuar, a mensagem será aberta no WhatsApp.</p>
-    <button className="button" type="submit">Montar mensagem <Send size={18}/></button>
+    <button className="button" type="submit"><WhatsAppIcon size={19}/> Montar mensagem no WhatsApp</button>
   </form>
 }
