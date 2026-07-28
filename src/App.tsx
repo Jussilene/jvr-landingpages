@@ -9,7 +9,7 @@ function ScrollAndTitle() {
   const { pathname } = useLocation()
   useEffect(() => {
     window.scrollTo(0, 0)
-    if (pathname === '/') document.title = 'JVR Landing Pages | Sites profissionais'
+    if (pathname === '/') document.title = 'Criação de Landing Pages Profissionais | JVR Landing Pages'
   }, [pathname])
   return null
 }
