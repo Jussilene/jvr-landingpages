@@ -121,3 +121,84 @@ body{background:#050714}.home{background:radial-gradient(circle at 15% 15%,#312e
 @media(max-width:900px){.demo-menu-button{display:block}.demo-links{display:none;position:absolute;top:75px;left:14px;right:14px;flex-direction:column;align-items:stretch;padding:20px;border:1px solid color-mix(in srgb,var(--text) 16%,transparent);background:var(--surface);box-shadow:0 24px 60px #0006}.demo-links.open{display:flex}.demo-links a{padding:8px}.demo-nav>div{display:none}.demo-nav>div.open{display:flex}}
 @media(pointer:coarse){[data-glow]{transform:none!important}[data-glow]:before{display:none}.open-hint{opacity:1;translate:-50% 0}.scroll-cue{display:none}}
 @media(prefers-reduced-motion:reduce){.motion-item{opacity:1;transform:none}.scroll-cue i:after,.price-card.featured:after,.demo-atmosphere i,.demo-atmosphere span,.demo-visual>span,.theme-voice .evidence-grid article:after,.theme-music .evidence-grid article:after{animation:none!important}}
+
+/* Editorial hero: title and showcase share the same stage instead of two columns */
+@media(min-width:901px){
+  .hero{min-height:1030px;padding-top:96px}
+  .hero-inner{
+    width:min(1320px,calc(100% - 64px));
+    min-height:790px;
+    display:grid;
+    grid-template-columns:repeat(12,minmax(0,1fr));
+    grid-template-rows:auto auto auto auto 1fr;
+    column-gap:22px;
+    align-items:start
+  }
+  .hero-copy{display:contents}
+  .hero-copy>.eyebrow{
+    grid-column:1/7;
+    grid-row:1;
+    width:max-content;
+    margin:8px 0 30px;
+    padding:9px 13px;
+    border:1px solid #ffffff17;
+    border-radius:999px;
+    background:#ffffff08;
+    backdrop-filter:blur(14px)
+  }
+  .hero h1{
+    grid-column:1/10;
+    grid-row:2;
+    z-index:6;
+    max-width:none;
+    margin:0;
+    font-size:clamp(4.5rem,7.2vw,7.4rem);
+    line-height:.88;
+    letter-spacing:-.067em;
+    text-wrap:balance
+  }
+  .hero h1 em{display:inline}
+  .hero-copy>p{
+    grid-column:1/5;
+    grid-row:3;
+    z-index:7;
+    align-self:end;
+    max-width:430px;
+    margin:58px 0 0;
+    padding-left:20px;
+    border-left:1px solid #67e8f966
+  }
+  .hero-actions{
+    grid-column:1/6;
+    grid-row:4;
+    z-index:7;
+    margin:28px 0 20px
+  }
+  .trust-row{
+    grid-column:1/6;
+    grid-row:5;
+    z-index:7;
+    align-self:start;
+    max-width:510px
+  }
+  .hero-art{
+    grid-column:5/13;
+    grid-row:2/6;
+    z-index:3;
+    align-self:end;
+    width:100%;
+    margin:120px 0 0;
+    transform:translateX(28px)
+  }
+  .hero-art img{
+    min-height:550px;
+    object-position:center;
+    border-radius:34px;
+    mask-image:linear-gradient(135deg,transparent 0%,#000 13%,#000 100%)
+  }
+  .browser-frame{left:7%;right:4%;top:6%}
+  .block-one{left:4%;bottom:13%}
+  .block-two{right:1%;top:25%}
+  .float-card{right:4%;bottom:7%}
+  .feature-strip{margin-top:22px}
+}
