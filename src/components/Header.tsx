@@ -8,7 +8,9 @@ export default function Header() {
   const home = import.meta.env.BASE_URL
   return <header className="site-header">
     <div className="nav-wrap">
-      <Link className="brand" to="/" aria-label="JVR Landing Pages — início"><span>JVR</span> Landing Pages</Link>
+      <Link className="brand brand-image" to="/" aria-label="JVR Landing Pages — início">
+        <img src={`${home}assets/jvr-logo.png`} alt="JVR Landing Pages" />
+      </Link>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Abrir menu" aria-expanded={open}>{open ? <X/> : <Menu/>}</button>
       <nav className={open ? 'nav-links open' : 'nav-links'} aria-label="Navegação principal">
         <a href={`${home}#modelos`} onClick={() => setOpen(false)}>Modelos</a>

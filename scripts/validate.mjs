@@ -11,9 +11,9 @@ for (const width of [375, 768, 1440]) {
   if (overflow) errors.push(`${width}px: rolagem horizontal`)
   const whatsappLinks = await page.locator('a[href^="https://wa.me/554195071438"]').count()
   if (whatsappLinks < 10) errors.push(`${width}px: links de WhatsApp insuficientes (${whatsappLinks})`)
+  await page.screenshot({ path: `public/previews/home-${width}.webp`, type: 'webp', quality: 75, fullPage: false })
   await page.locator('form button[type="submit"]').click()
   if (!(await page.getByRole('alert').isVisible())) errors.push(`${width}px: validação do formulário não apareceu`)
-  await page.screenshot({ path: `public/previews/home-${width}.webp`, type: 'webp', quality: 75, fullPage: false })
   await page.close()
 }
 const page = await browser.newPage({ viewport: { width: 375, height: 812 } })
