@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Home from './pages/Home'
 import Legal from './pages/Legal'
 import TemplatePage from './templates/TemplatePage'
+import ScrollProgress from './components/ScrollProgress'
 
 function ScrollAndTitle() {
   const { pathname } = useLocation()
@@ -16,6 +17,7 @@ function ScrollAndTitle() {
 export default function App() {
   return <>
     <ScrollAndTitle />
+    <ScrollProgress />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/templates/:slug" element={<TemplatePage />} />

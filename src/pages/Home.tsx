@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import QuoteForm from '../components/QuoteForm'
 import FloatingWhatsApp from '../components/FloatingWhatsApp'
 import WhatsAppIcon from '../components/WhatsAppIcon'
+import PageMotion from '../components/PageMotion'
 import { SITE, whatsappUrl } from '../config/site'
 import { templates, categories } from '../data/templates'
 import { buildPlans, carePlans, extras } from '../data/pricing'
@@ -46,6 +47,7 @@ export default function Home() {
     event.currentTarget.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`)
   }
   return <div className="home">
+    <PageMotion rootClass=".home"/>
     <Header/>
     <main ref={mainRef}>
       <section className="hero" onPointerMove={moveGlow}>
@@ -55,6 +57,7 @@ export default function Home() {
           <div className="hero-art"><div className="browser-frame"><span/><span/><span/></div><img src={`${base}assets/hero-showcase.png`} alt="Mockups de landing pages em celulares, tablets e computadores" /><div className="float-card"><span>15 modelos</span><strong>prontos para personalizar</strong></div><div className="float-block block-one">Conversão</div><div className="float-block block-two">Mobile first</div></div>
         </div>
         <div className="feature-strip"><span><WhatsAppIcon/> WhatsApp</span><span><Search/> SEO básico</span><span><ShieldCheck/> Suporte disponível</span><span><Globe2/> Todo o Brasil</span></div>
+        <a className="scroll-cue" href="#modelos" aria-label="Continuar explorando"><i/><span>Explore</span></a>
       </section>
       <div className="niche-marquee" aria-label="Nichos atendidos"><div>{[...templates,...templates].map((t,i)=><span key={`${t.slug}-${i}`}>{t.niche}<i>✦</i></span>)}</div></div>
 
@@ -62,7 +65,7 @@ export default function Home() {
 
       <section className="templates-section" id="modelos"><div className="container section-heading"><span className="eyebrow">Escolha seu ponto de partida</span><h2>Modelos com personalidade.<br/>Personalizados para a sua marca.</h2><p>Cada demonstração é uma página funcional completa. Abra, explore e imagine seu conteúdo ali.</p></div>
         <div className="filters" aria-label="Filtrar modelos">{categories.map(c=><button key={c} className={filter===c?'active':''} onClick={()=>setFilter(c)}>{c}</button>)}</div>
-        <div className="container template-grid">{visible.map((t,index)=><article className={`template-card card-${t.palette} ${index===0?'recommended':''}`} key={t.slug}><Link className="preview" to={`/templates/${t.slug}`} aria-label={`Visualizar template ${t.name}`}><img src={`${base}previews/${t.slug}.webp`} alt={`Prévia real do template ${t.name}`} loading="lazy" />{index===0&&<b className="recommended-badge">Recomendado</b>}</Link><div className="template-info"><div className="template-meta"><span className="tag">{t.category}</span><strong>A partir de R$ 500</strong></div><h3>{t.name}</h3><p>{t.niche} · {t.style}</p><div className="template-features"><span>Responsivo</span><span>WhatsApp</span><span>SEO básico</span></div><div className="card-actions"><Link to={`/templates/${t.slug}`}>Visualizar template</Link><a href={whatsappUrl(`Olá! Gostei do template ${t.name} e gostaria de contratar esse modelo.`)} target="_blank" rel="noreferrer" aria-label={`Solicitar orçamento do template ${t.name}`}><WhatsAppIcon size={15}/> Orçamento</a></div></div></article>)}</div>
+        <div className="container template-grid">{visible.map((t,index)=><article data-glow data-motion className={`template-card card-${t.palette} ${index===0?'recommended':''}`} key={t.slug}><Link className="preview" to={`/templates/${t.slug}`} aria-label={`Visualizar template ${t.name}`}><span className="preview-browser"><i/><i/><i/><b>jvr.page/{t.slug}</b></span><img src={`${base}previews/${t.slug}.webp`} alt={`Prévia real do template ${t.name}`} loading="lazy" />{index===0&&<b className="recommended-badge">Recomendado</b>}<span className="open-hint">Abrir projeto <ArrowRight size={15}/></span></Link><div className="template-info"><div className="template-meta"><span className="tag">{t.category}</span><strong>A partir de R$ 500</strong></div><h3>{t.name}</h3><p>{t.niche} · {t.style}</p><div className="template-features"><span>Responsivo</span><span>WhatsApp</span><span>SEO básico</span></div><div className="card-actions"><Link to={`/templates/${t.slug}`}>Ver demonstração</Link><a href={whatsappUrl(`Olá! Gostei do template ${t.name} e gostaria de contratar esse modelo.`)} target="_blank" rel="noreferrer" aria-label={`Solicitar orçamento do template ${t.name}`}><WhatsAppIcon size={15}/> Orçamento</a></div></div></article>)}</div>
       </section>
 
       <section className="light-section" id="planos"><div className="container section-heading dark-heading"><span className="eyebrow dark">Planos e valores</span><h2>Simples de entender.<br/>Fácil de começar.</h2><p>*O prazo começa após o recebimento de todo o material solicitado.</p></div><div className="container pricing-grid">{buildPlans.map(p=><article className={p.featured?'price-card featured':'price-card'} key={p.name}>{p.featured&&<span className="popular">Mais escolhido</span>}<h3>{p.name}</h3><strong className="price">{p.price}</strong><p>{p.description}</p><ul>{p.items.map(x=><li key={x}><Check/>{x}</li>)}</ul><a className="button" href={whatsappUrl(`Olá! Gostaria de contratar o plano ${p.name}.`)} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Escolher este plano</a></article>)}</div><div className="container scope-note"><ShieldCheck/><p><strong>Escopo objetivo:</strong> sistemas, lojas virtuais, login, painéis, automações e integrações avançadas precisam de orçamento separado.</p></div></section>
