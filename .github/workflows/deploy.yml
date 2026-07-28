@@ -31,18 +31,20 @@ jobs:
         with:
           path: dist
 
+  wait-for-legacy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Wait for legacy branch deployment
+        run: sleep 75
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, wait-for-legacy]
     steps:
-      # O repositório ainda possui o deploy legado "Deploy from a branch".
-      # Ele publica a raiz da main e pode sobrescrever o artefato compilado.
-      # A espera garante que este workflow, que publica dist/, finalize por último.
-      - name: Wait for legacy branch deployment
-        run: sleep 75
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
