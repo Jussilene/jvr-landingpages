@@ -6,7 +6,7 @@ const errors = []
 for (const width of [375, 768, 1440]) {
   const page = await browser.newPage({ viewport: { width, height: 900 } })
   page.on('console', message => { if (message.type() === 'error') errors.push(`${width}px console: ${message.text()}`) })
-  await page.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' })
+  await page.goto('http://127.0.0.1:4173/jvr-landingpages/', { waitUntil: 'networkidle' })
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
   if (overflow) errors.push(`${width}px: rolagem horizontal`)
   const whatsappLinks = await page.locator('a[href^="https://wa.me/554195071438"]').count()
@@ -18,11 +18,16 @@ for (const width of [375, 768, 1440]) {
 }
 const page = await browser.newPage({ viewport: { width: 375, height: 812 } })
 for (const slug of slugs) {
-  const response = await page.goto(`http://127.0.0.1:4173/templates/${slug}`, { waitUntil: 'networkidle' })
+  const response = await page.goto(`http://127.0.0.1:4173/jvr-landingpages/templates/${slug}`, { waitUntil: 'networkidle' })
   if (!response?.ok()) errors.push(`${slug}: HTTP ${response?.status()}`)
   if (await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)) errors.push(`${slug}: rolagem horizontal no celular`)
-  if (!(await page.getByText('Template demonstrativo', { exact: false }).first().isVisible())) errors.push(`${slug}: aviso ausente`)
+  if (!(await page.getByText('Template demonstrativo', { exact: false }).first().isVisible())) {
+    const heading = await page.locator('h1').first().textContent()
+    errors.push(`${slug}: aviso ausente (${page.url()} · ${heading})`)
+  }
   if ((await page.locator('a[href*="wa.me/554195071438"]').count()) < 2) errors.push(`${slug}: CTA WhatsApp ausente`)
+  const sections = await page.locator('main section[data-section]').count()
+  if (sections < 7) errors.push(`${slug}: apenas ${sections} seções substanciais`)
 }
 await browser.close()
 if (errors.length) {

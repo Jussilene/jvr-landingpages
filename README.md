@@ -19,6 +19,8 @@ npm run preview
 
 O build estático será criado em `dist/` e pode ser publicado em Vercel, Netlify, Cloudflare Pages ou qualquer hospedagem estática. O comando de build é `npm run build` e a pasta de saída é `dist`.
 
+O repositório também inclui o workflow `.github/workflows/deploy.yml`, que publica automaticamente no GitHub Pages após cada envio para a branch `main`. O projeto está configurado para funcionar no caminho `/jvr-landingpages/`, inclusive ao abrir diretamente as rotas dos templates.
+
 ## Onde alterar
 
 - Marca, WhatsApp, Instagram e mensagens: `src/config/site.ts`

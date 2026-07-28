@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, BadgeCheck, Check, ChevronDown, Clock3, Globe2, HeartHandshake, MessageCircle, MonitorSmartphone, Search, ShieldCheck, Sparkles } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -25,6 +26,7 @@ const faqs = [
 export default function Home() {
   const [filter, setFilter] = useState('Todos')
   const visible = filter === 'Todos' ? templates : templates.filter(t => t.category === filter)
+  const base = import.meta.env.BASE_URL
   return <div className="home">
     <Header/>
     <main>
@@ -32,7 +34,7 @@ export default function Home() {
         <div className="hero-inner">
           <div className="hero-copy"><span className="eyebrow"><Sparkles size={16}/> Presença digital sem complicação</span><h1>Sua landing page profissional, <em>bonita e pronta para vender.</em></h1><p>Escolha um dos nossos modelos, envie seus textos, imagens, vídeos ou áudios e receba sua página personalizada e publicada com rapidez.</p><div className="hero-actions"><a className="button" href="#modelos">Ver templates <ArrowRight size={18}/></a><a className="button secondary" href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle size={19}/> Pedir orçamento</a></div>
           <div className="trust-row"><span><BadgeCheck/> A partir de R$ 500</span><span><Clock3/> Entrega rápida</span><span><MonitorSmartphone/> Responsiva</span></div></div>
-          <div className="hero-art"><img src="/assets/hero-showcase.png" alt="Diferentes landing pages apresentadas em celulares, tablets e computadores" /><div className="float-card"><span>15 modelos</span><strong>prontos para personalizar</strong></div></div>
+          <div className="hero-art"><img src={`${base}assets/hero-showcase.png`} alt="Diferentes landing pages apresentadas em celulares, tablets e computadores" /><div className="float-card"><span>15 modelos</span><strong>prontos para personalizar</strong></div></div>
         </div>
         <div className="feature-strip"><span><MessageCircle/> WhatsApp</span><span><Search/> SEO básico</span><span><ShieldCheck/> Suporte disponível</span><span><Globe2/> Todo o Brasil</span></div>
       </section>
@@ -41,7 +43,7 @@ export default function Home() {
 
       <section className="templates-section" id="modelos"><div className="container section-heading"><span className="eyebrow">Escolha seu ponto de partida</span><h2>Modelos com personalidade.<br/>Personalizados para a sua marca.</h2><p>Cada demonstração é uma página funcional completa. Abra, explore e imagine seu conteúdo ali.</p></div>
         <div className="filters" aria-label="Filtrar modelos">{categories.map(c=><button key={c} className={filter===c?'active':''} onClick={()=>setFilter(c)}>{c}</button>)}</div>
-        <div className="container template-grid">{visible.map(t=><article className={`template-card card-${t.palette}`} key={t.slug}><a className="preview" href={`/templates/${t.slug}`} aria-label={`Ver demonstração ${t.name}`}><img src={`/previews/${t.slug}.webp`} alt={`Prévia real do template ${t.name}`} loading="lazy" /></a><div className="template-info"><span className="tag">{t.category}</span><h3>{t.name}</h3><p>{t.niche} · {t.style}</p><div className="card-actions"><a href={`/templates/${t.slug}`}>Ver demonstração</a><a href={whatsappUrl(`Olá! Gostei do template ${t.name} e gostaria de contratar esse modelo.`)} target="_blank" rel="noreferrer">Quero este modelo <ArrowRight size={15}/></a></div></div></article>)}</div>
+        <div className="container template-grid">{visible.map(t=><article className={`template-card card-${t.palette}`} key={t.slug}><Link className="preview" to={`/templates/${t.slug}`} aria-label={`Ver demonstração ${t.name}`}><img src={`${base}previews/${t.slug}.webp`} alt={`Prévia real do template ${t.name}`} loading="lazy" /></Link><div className="template-info"><span className="tag">{t.category}</span><h3>{t.name}</h3><p>{t.niche} · {t.style}</p><div className="card-actions"><Link to={`/templates/${t.slug}`}>Ver demonstração</Link><a href={whatsappUrl(`Olá! Gostei do template ${t.name} e gostaria de contratar esse modelo.`)} target="_blank" rel="noreferrer">Quero este modelo <ArrowRight size={15}/></a></div></div></article>)}</div>
       </section>
 
       <section className="light-section" id="planos"><div className="container section-heading dark-heading"><span className="eyebrow dark">Planos e valores</span><h2>Simples de entender.<br/>Fácil de começar.</h2><p>*O prazo começa após o recebimento de todo o material solicitado.</p></div><div className="container pricing-grid">{buildPlans.map(p=><article className={p.featured?'price-card featured':'price-card'} key={p.name}>{p.featured&&<span className="popular">Mais escolhido</span>}<h3>{p.name}</h3><strong className="price">{p.price}</strong><p>{p.description}</p><ul>{p.items.map(x=><li key={x}><Check/>{x}</li>)}</ul><a className="button" href={whatsappUrl(`Olá! Gostaria de contratar o plano ${p.name}.`)} target="_blank" rel="noreferrer">Escolher este plano</a></article>)}</div><div className="container scope-note"><ShieldCheck/><p><strong>Escopo objetivo:</strong> sistemas, lojas virtuais, login, painéis, automações e integrações avançadas precisam de orçamento separado.</p></div></section>

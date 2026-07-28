@@ -6,7 +6,7 @@ await mkdir('public/previews', { recursive: true })
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1 })
 for (const slug of slugs) {
-  await page.goto(`http://127.0.0.1:4173/templates/${slug}`, { waitUntil: 'networkidle' })
+  await page.goto(`http://127.0.0.1:4173/jvr-landingpages/templates/${slug}`, { waitUntil: 'networkidle' })
   await page.screenshot({ path: `public/previews/${slug}.webp`, type: 'webp', quality: 78 })
 }
 await browser.close()
