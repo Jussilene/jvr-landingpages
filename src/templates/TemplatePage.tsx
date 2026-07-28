@@ -28,7 +28,7 @@ export default function TemplatePage() {
     <nav className="demo-nav">
       <strong>{item.name}</strong>
       <button className="demo-menu-button" onClick={()=>setMenuOpen(!menuOpen)} aria-label={menuOpen?'Fechar menu':'Abrir menu'}>{menuOpen?<X/>:<Menu/>}</button>
-      <div className={menuOpen?'demo-links open':'demo-links'}><a href="#sobre" onClick={()=>setMenuOpen(false)}>Sobre</a><a href="#servicos" onClick={()=>setMenuOpen(false)}>Serviços</a><a href="#experiencia" onClick={()=>setMenuOpen(false)}>Experiência</a><a href="#duvidas" onClick={()=>setMenuOpen(false)}>Dúvidas</a><a href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={16}/> Contato</a></div>
+      <div className={menuOpen?'demo-links open':'demo-links'}><a href="#sobre" onClick={()=>setMenuOpen(false)}>Sobre</a><a href="#servicos" onClick={()=>setMenuOpen(false)}>Serviços</a><a href="#experiencia" onClick={()=>setMenuOpen(false)}>Experiência</a><a href="#duvidas" onClick={()=>setMenuOpen(false)}>Dúvidas</a><a href={contact} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={16}/> Contato</a></div>
     </nav>
 
     <main>
@@ -37,7 +37,7 @@ export default function TemplatePage() {
           <span className="demo-eyebrow">{item.eyebrow}</span>
           <h1>{item.headline}</h1>
           <p>{item.subheadline}</p>
-          <a className="demo-button" href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Solicitar informações <ArrowRight size={18}/></a>
+          <a className="demo-button" href={contact} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18}/> Solicitar informações <ArrowRight size={18}/></a>
         </div>
         <div className="demo-visual" data-glow aria-label={`Composição visual do template ${item.name}`}>
           <div className="orb"/><span>{item.name.charAt(0)}</span><small>{item.niche}</small>
@@ -93,7 +93,7 @@ export default function TemplatePage() {
         <span>Pronto para adaptar este modelo à sua marca?</span>
         <h2>Vamos criar uma presença completa que tenha a sua cara.</h2>
         <p>Fale com a JVR e solicite um orçamento para personalizar textos, cores e conteúdo.</p>
-        <a className="demo-button" href={contact} target="_blank" rel="noreferrer"><WhatsAppIcon size={18}/> Quero este modelo <ArrowRight size={18}/></a>
+        <a className="demo-button" href={contact} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={18}/> Quero este modelo <ArrowRight size={18}/></a>
       </section>
     </main>
 

@@ -38,7 +38,7 @@ export default function Header() {
         <a href={`${home}#planos`} onClick={() => setOpen(false)}>Planos</a>
         <a href={`${home}#como-funciona`} onClick={() => setOpen(false)}>Como funciona</a>
         <a href={`${home}#duvidas`} onClick={() => setOpen(false)}>Dúvidas</a>
-        <a className="button button-small" href={whatsappUrl()} target="_blank" rel="noreferrer"><WhatsAppIcon size={17}/> Solicitar orçamento</a>
+        <a className="button button-small" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={17}/> Solicitar orçamento</a>
       </nav>
     </div><span className="sr-only">{SITE.tagline}</span>
   </header>
